@@ -12,4 +12,9 @@ jobs:
      - name : multiline command
        run: |
         node -v
-        nom -v 
+        npm -v 
+  parallel-job-macos:
+      runs-on: macos-latest
+      steps:
+      - name: view sw version
+        run: sw_vers
