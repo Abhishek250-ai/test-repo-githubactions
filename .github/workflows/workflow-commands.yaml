@@ -8,3 +8,15 @@ jobs:
         steps:
          - name: setting an error message
            run: echo "::error::missing semicolon"
+         - name: setting an error message with aprams
+           run: ehco "::error title=Error title, file=app.js,line=",
+                endlins=3,col=5,endcolumn=7::missing Semicolon"
+         - name: setting an debug message with aprams
+           run: ehco "::debug title=Debug title, file=app.js,line=",
+                endlins=3,col=5,endcolumn=7::missing Semicolon"
+         - name: setting an warning message with aprams
+           run: ehco "::warning title=Warning title, file=app.js,line=",
+                endlins=3,col=5,endcolumn=7::missing Semicolon"
+         - name: setting an notice message with aprams
+           run: ehco "::notice title=Notice title, file=app.js,line=",
+                endlins=3,col=5,endcolumn=7::missing Semicolon"
