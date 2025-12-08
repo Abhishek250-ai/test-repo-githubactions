@@ -9,10 +9,10 @@ jobs:
          - name: setting an error message
            run: echo "::error::missing semicolon"
          - name: setting an error message with aprams
-           run: echo "::error title=Error title, file=app.js,line=",endline=3,col=5,endcolumn=7::missing Semicolon"
+           run: echo "::error title=Error title, file=app.js,line=2,endline=3,col=5,endcolumn=7::missing Semicolon"
          - name: setting a debug message with aprams
-           run: echo "::debug title=Debug title, file=app.js,line=",endline=3,col=5,endcolumn=7::missing Semicolon"
+           run: echo "::debug title=Debug title, file=app.js,line=2,endline=3,col=5,endcolumn=7::missing Semicolon"
          - name: setting a warning message with aprams
-           run: echo "::warning title=Warning title, file=app.js,line=",endline=3,col=5,endcolumn=7::missing Semicolon"
+           run: echo "::warning title=Warning title, file=app.js,line=2,endline=3,col=5,endcolumn=7::missing Semicolon"
          - name: setting a notice message with aprams
-           run: echo "::notice title=Notice title, file=app.js,line=",endline=3,col=5,endcolumn=7::missing Semicolon"
+           run: echo "::notice title=Notice title, file=app.js,line=2,endline=3,col=5,endcolumn=7::missing Semicolon"
