@@ -1,0 +1,32 @@
+name: git checkout
+
+on: [push]
+
+jobs:
+    git-checkout-actions-workflow:
+     runs-on: ubuntu-latest
+
+     steps:
+      - name: List Files Before 
+        run: ls -la  
+      
+      - uses: actions/checkout@v6
+
+      - name: List Files After 
+        run: ls -la
+
+    git-checkout-workflow:
+     runs-on: ubuntu-latest
+
+     steps:
+
+     - name: List Files before
+       run: ls -la
+     - name: checkout git repository
+       run : |
+        git init
+        git remote add origin "https://$GITHUB_ACTOR:${{  secrets.GITHUB_TOKEN  }}@github.com/$GITHUB_REPOSITORY.git"
+        git fetch origin
+        git checkout main
+     - name: List Files After
+       run: ls -la
