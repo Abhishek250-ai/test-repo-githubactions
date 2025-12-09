@@ -18,9 +18,9 @@ jobs:
        echo "$GITHUB_SHA"
        echo "$GITHUB_REPOSITORY"
        echo "$GITHUB_WORKSPACE"
-    - name: change working Directroy
-      working-directory: /home/ubuntu
-      run: pwd
+    # - name: change working Directroy
+    #   working-directory: /home/ubuntu
+    #   run: pwd
   display-wf-infor-windows:
     runs-on: windows-latest
     defaults:
