@@ -1,0 +1,37 @@
+name: Wrokflow Directroy and Shell Commands
+
+on: [push]
+
+
+jobs:
+  display-wd-info:
+    runs-on : ubuntu-22.04
+    defaults:
+      run:
+        shell: bash
+
+    steps:
+    - name: working dir and shell commands
+      run: |
+       pwd
+       ls -la
+       echo "$GITHUB_SHA"
+       echo "$GITHUB_REPOSITORY"
+       echo "$GITHUB_WORKSPACE"
+    - name: change working Directroy
+      working-directory: /home/ubuntu
+      run: pwd
+  display-wf-infor-windows:
+    runs-on: windows-latest
+    defaults:
+      run:
+        shell: pwsh
+
+    steps:
+    - name: windows working dir and commands
+      run: |
+        Get-Location
+        dir
+        echo $env:GITHUB_SHA
+        echo $env:GITHUB_REPOSITORY
+        echo $env:GITHUB_WORKSPACE
