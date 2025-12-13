@@ -1,0 +1,12 @@
+name : manual trigger workflow
+
+on:
+    workflow_dispatch:
+        
+jobs:
+    log-info:
+        runs-on: ubuntu-22.04
+        steps:
+         - run : |
+            find '/var/logs/'-type f -name '*.log' -mtime +1
+
