@@ -8,10 +8,11 @@ jobs:
         - name: step 1
           run: sleep 20
         - name: Fail
+          id: step-2
           run: exit 1
         - name: Runs on failure
-          if: failure()
-          run: echo "Runs only on failure"
+          if: failure() && steps.step-2.conclusion == 'failure'
+          run: echo "step 2 has failed"
         - name: Runs on success
         #Below step is a default function so not needed
           if : success()
