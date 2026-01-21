@@ -16,13 +16,12 @@ jobs:
     perpate-matrix:
         runs-on: ubuntu-latest
         steps:
-            - run: echo "step-output=value" >> $GITHUB_OUTPUT
-              id: step-1 
-            - run: echo "step-output=value2" >> $GITHUB_OUTPUT
-              id: step-2
-            - run: |
-                echo "${{ steps.step-1.outputs.step-output }}"
-                echo "${{ steps.step-2.outputs.step-output }}"
+         - uses: actions/github-script@v8
+           id: materix-arrays
+           with:
+            script: "return {os:context.payload.inputs['os'].split(','), 'node-version': context.payload.inputs['node-version'].split(',')}"
+            result-encoding: json
+         - run: echo "${{ steps.materix-arrays.outputs.result}}"
     node-matrix:
         continue-on-error: true
         strategy: 
