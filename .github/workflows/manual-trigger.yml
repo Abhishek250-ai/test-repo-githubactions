@@ -1,0 +1,23 @@
+name : manual trigger workflow
+
+on:
+    workflow_dispatch:
+        inputs:
+            environments:
+                description: choose an envi
+                type : choice
+                required: true
+                default : dev
+                options:
+                    - dev
+                    - qa
+                    - uat
+                    - prod
+        
+jobs:
+    log-info:
+        runs-on: ubuntu-22.04
+        steps:
+         - run : |
+            find /var/logs/ -type f -name '*.log'
+

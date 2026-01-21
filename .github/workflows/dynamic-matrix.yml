@@ -1,0 +1,43 @@
+name: github actions dynamic materix
+
+on: 
+    workflow_dispatch:
+        inputs:
+            os: 
+                description: operating system
+                default: "windows-2025, ubuntu-24.04"
+                type: string
+            node-version:
+                description: Node Version
+                default: "18, 20, 22"
+                type: string
+
+jobs:
+    prepare-matrix:
+        outputs: 
+            matrix-arrays: ${{ steps.materix-arrays.outputs.result }}
+        runs-on: ubuntu-latest
+        steps:
+         - uses: actions/github-script@v8
+           id: materix-arrays
+           with:
+            script: "return {os:context.payload.inputs['os'].split(','), 'node-version': context.payload.inputs['node-version'].split(',')}"
+            result-encoding: json
+         - run: echo "${{ steps.materix-arrays.outputs.result}}"
+    node-matrix:
+        needs: prepare-matrix
+        # continue-on-error: true
+        strategy: 
+            matrix:
+                os: ${{ fromJson(needs.prepare-matrix.outputs.matrix-arrays).os }}
+                node-version: ${{ fromJson(needs.prepare-matrix.outputs.matrix-arrays).node-version }}
+            fail-fast: false
+            # max-parallel: 3
+        runs-on: ${{ matrix.os }}
+                    
+        steps:
+        - run: node -v
+        - uses: actions/setup-node@v6
+          with:
+            node-version: ${{ matrix.node-version }}
+        - run: node -v
