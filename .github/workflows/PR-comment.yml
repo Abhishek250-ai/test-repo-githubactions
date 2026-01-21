@@ -12,7 +12,7 @@ jobs:
             issues: read
         steps:
         - name: Comment on new PR
-          uses: actions/github-scripts@v6
+          uses: actions/github-script@v6
           with:
             script: |
                 github.reset.issue.createComment({
